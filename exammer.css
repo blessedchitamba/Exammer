@@ -1,0 +1,28 @@
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	background-image: url("background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+
+body h1 {
+	text-align: center;
+	padding-bottom: 80px;
+	padding-top: 80px;
+}
+
+#logins {
+	height: auto;
+}
+
+.btn-primary {
+	display: inline-block;
+}
+
+#logins p {
+	font-size: 14px;
+	width: auto;
+}
