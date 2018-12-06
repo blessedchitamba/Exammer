@@ -37,7 +37,7 @@ if( isset( $_POST['login'] ) ) {
             $_SESSION['loggedInUser'] = $name;
             
             // redirect user to clients page
-            header( "Location: clients.php" );
+            header( "Location: profile.php" );
         } else { // hashed password didn't verify
             
             // error message
@@ -74,15 +74,17 @@ mysqli_close($conn);
 
     <body>
           <h1>Exammer</h1>
+
+          <?php echo $loginError; ?>
           <!--Form start-->
           <div class = "container-fluid">
               <div class = "row">
                   <div class = "col-md-4 col-sm-4 col-xs-12"></div>
                   <div class = "col-md-4 col-sm-4 col-xs-12">
-                      <form class = "form-container" method="_POST">
+                      <form class = "form-container" method="_POST" action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $formEmail; ?>">
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
