@@ -76,3 +76,7 @@ include('header.php');
         <td colspan="7"><div class="text-center"><a href="add.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Client</a></div></td>
     </tr>
 </table>
+
+<?php
+include('footer.php');
+?>

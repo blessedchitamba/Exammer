@@ -1,4 +1,4 @@
-48;37M<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
@@ -22,7 +22,7 @@
     </head>
     
     <body style="padding-top: 60px;">            
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <nav class="navbar navbar-default navbar-fixed-top">
 
         <div class="container-fluid">
 
