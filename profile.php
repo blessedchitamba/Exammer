@@ -37,7 +37,11 @@ include('header.php');
 
 <h1>Hie. Below is a list of your courses.</h1>
 
-<?php echo $alertMessage; ?>
+<?php 
+if( isset( $alertMessage ) ) {
+    echo $alertMessage;
+}
+?>
 
 <table class="table table-striped table-bordered">
     <tr>
@@ -56,9 +60,9 @@ include('header.php');
         while( $row = mysqli_fetch_assoc($result) ) {
             echo "<tr>";
             
-            echo "<td>" . $row['code'] . "</td><td>" . $row['description'] . "</td><td>" . $row['number'] . "</td><td>";
+            echo "<td>" . $row['code'] . "</td><td>" . $row['description'] . "</td>";
             
-            echo '<td><a href="remove.php?id=' . $row['id'] . '" type="button" class="btn btn-primary btn-sm">
+            echo '<td><a href="remove.php?id=' . $row['ID'] . '" type="button" class="btn btn-primary btn-sm">
                     <span class="glyphicon glyphicon-delete"></span>
                     </a></td>';
             
@@ -68,12 +72,10 @@ include('header.php');
         echo "<div class='alert alert-warning'>Mmmm, looks lonely here. Please add courses.</div>";
     }
 
-    mysqli_close($conn);
-
     ?>
 
     <tr>
-        <td colspan="7"><div class="text-center"><a href="add.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Client</a></div></td>
+        <td colspan="7"><div class="text-center"><a href="add.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Course</a></div></td>
     </tr>
 </table>
 

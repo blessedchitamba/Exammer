@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 
                 <?php
-                if( $_SESSION['loggedInUser'] ) { // if user is logged in
+                if( isset( $_SESSION['loggedInUser'] ) ) { // if user is logged in
                 ?>
                 <ul class="nav navbar-nav">
                     <li><a href="#">Dont Click</a></li>
@@ -47,7 +47,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <p class="navbar-text">Aloha, $_SESSION['username']!</p>
+                    <p class="navbar-text">Aloha, <?php echo $_SESSION['loggedInUser']?>!</p>
 
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
