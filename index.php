@@ -92,7 +92,7 @@ include('header.php');
                     </div>
                     <div id = "logins">
                         <button type="submit" class="btn btn-success btn-block" name="login">Login</button>
-                        <p>Don't have an account? <a href="signUp.html">Sign Up</a></p>
+                        <p>Don't have an account? <a href="signUp.php">Sign Up</a></p>
                     </div>
                   </form>
               </div>
