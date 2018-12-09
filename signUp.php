@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("header.php");
 include('functions.php');
 
@@ -11,7 +13,7 @@ $formEmail="";
 $errorMsg="";
 
 // if sign up form was submitted
-if( isset( $_POST['submit'] ) ) {
+if( isset( $_POST['signUp'] ) ) {
 
     // create variables
     // wrap data with validate function
@@ -23,15 +25,13 @@ if( isset( $_POST['submit'] ) ) {
 
     //if name is empty
     if( $formName=="" || $formSurname=="") {
-    	$errorMsg = "<div class='alert alert-danger'>Name/Surname cannot be empty.</div>";
-    }
-
-    //if password too short
-    if( (strlen($formPass) < 6) && ($errorMsg=="")) {
-    	$errorMsg = "<div class='alert alert-danger'>Password must have at least 6 characters.</div>";
+    	$errorMsg = "<div class='alert alert-danger'>Name/Surname cannot be empty.<a class='close' data-dismiss='alert'>&times;</a></div>";
+    } 
+    elseif( (strlen($formPass) < 6) && ($errorMsg=="")) {  //if password too short
+    	$errorMsg = "<div class='alert alert-danger'>Password must have at least 6 characters.<a class='close' data-dismiss='alert'>&times;</a></div>";
     }
     elseif( ($formPass != $formConfirmPass) && ($errorMsg=="")) {
-    	$errorMsg = "<div class='alert alert-danger'>Passwords do not match. Try again.</div>";
+    	$errorMsg = "<div class='alert alert-danger'>Passwords do not match. Try again.<a class='close' data-dismiss='alert'>&times;</a></div>";
     }
     
     //proceed if there are no password errors
@@ -46,9 +46,9 @@ if( isset( $_POST['submit'] ) ) {
     	$result = mysqli_query( $conn, $query );
 
     	if( mysqli_num_rows($result) != 0 ) {
-        	$errorMsg = "<div class='alert alert-danger'>This email is already in use.</div>";
+        	$errorMsg = "<div class='alert alert-danger'>This email is already in use.<a class='close' data-dismiss='alert'>&times;</a></div>";
         } elseif( !filter_var($formEmail, FILTER_VALIDATE_EMAIL) ) {
-        	$errorMsg = "<div class='alert alert-danger'>Please enter a valid email.</div>";
+        	$errorMsg = "<div class='alert alert-danger'>Please enter a valid email.<a class='close' data-dismiss='alert'>&times;</a></div>";
         }
 	    // insert into table
 	   //hash the password
@@ -117,7 +117,7 @@ name="email" value="<?php echo $formEmail; ?>">
                                 <label for="confirmPassword">Confirm Password</label>
                                 <input type="password" class="form-control" id="confirmPassword" placeholder="Password" name="confirmPassword">
                             </div>
-                            <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                            <button type="submit" class="btn btn-success btn-block" name="signUp">Sign Up</button>
                       </form>
                   </div>
                   <div class = "col-md-4 col-sm-4 col-xs-12"></div>
