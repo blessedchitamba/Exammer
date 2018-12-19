@@ -12,7 +12,7 @@ if( !$_SESSION['loggedInUser'] ) {
 include('connection.php');
 
 // query & result
-$query = "SELECT * FROM courses";
+$query = "SELECT * FROM does_course WHERE user_id = ".$_SESSION['user_id'];
 $result = mysqli_query( $conn, $query );
 
 // check for query string
@@ -42,42 +42,28 @@ if( isset( $alertMessage ) ) {
     echo $alertMessage;
 }
 ?>
-
-<table class="table table-striped table-bordered">
-    <tr>
-        <th>Course Code</th>
-        <th>Course Description</th>
-        <th>Number of Answer Sheets</th>
-    </tr>
     
     <?php
     
-    if( mysqli_num_rows($result) > 0 ) {
-        
+    if( !$result ) {
+        echo "<div class='alert alert-warning'>Mmmm, looks lonely here. Please add courses.</div>";
+
+    } elseif(mysqli_num_rows($result) > 0 ) { // if no entries
+        //echo "<div class='alert alert-warning'>Mmmm, looks lonely here. Please add courses.</div>";
         // we have data!
         // output the data
         
         while( $row = mysqli_fetch_assoc($result) ) {
-            echo "<tr>";
             
-            echo "<td>" . $row['code'] . "</td><td>" . $row['description'] . "</td>";
+            echo "<p>" . $row['course'] . '<a href="remove.php?id=' . $row['user_id'] . '" type="button" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-delete"></span></a></p>';
             
-            echo '<td><a href="remove.php?id=' . $row['ID'] . '" type="button" class="btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-delete"></span>
-                    </a></td>';
-            
-            echo "</tr>";
         }
-    } else { // if no entries
-        echo "<div class='alert alert-warning'>Mmmm, looks lonely here. Please add courses.</div>";
     }
 
     ?>
 
-    <tr>
-        <td colspan="7"><div class="text-center"><a href="add.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Course</a></div></td>
-    </tr>
-</table>
+    <div class="text-center"><a href="add.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Course</a></div>
 
 <?php
 include('footer.php');

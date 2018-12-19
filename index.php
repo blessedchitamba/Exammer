@@ -42,6 +42,7 @@ if( isset( $_POST['login'] ) ) {
             // correct login details!
             // store data in SESSION variables
             $_SESSION['loggedInUser'] = $name;
+            $_SESSION['user_id'] = $row['user_id'];
             
             // redirect user to clients page
             header( "Location: profile.php" );
