@@ -63,7 +63,7 @@ if( isset( $alertMessage ) ) {
 
     ?>
 
-    <div class="text-center"><a href="add.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Course</a></div>
+    <div class="text-center"><a href="addCourse.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Course</a></div>
 
 <?php
 include('footer.php');
