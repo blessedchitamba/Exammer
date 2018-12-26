@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+// if user is not logged in
+if( !$_SESSION['loggedInUser'] ) {
+    
+    // send them to the login page
+    header("Location: index.php");
+}
+
+// connect to database
+include('connection.php');
+
+// query & result
+$query = "SELECT * FROM courses";
+$result = mysqli_query( $conn, $query );
+
+// close the mysql connection
+mysqli_close($conn);
+
+?>
+
 <!DOCTYPE html>
 <html>
  <head>
@@ -10,6 +32,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
  </head>
  <body>
+
+
   <br /><br />
   <div class = "container-fluid">
       <div class = "row">
@@ -20,14 +44,21 @@
              <form method="post" id="framework_form">
               <div class="form-group">
                <select id="framework" name="framework[]" multiple class="form-control" >
-                <option value="Codeigniter">Codeigniter</option>
-                <option value="CakePHP">CakePHP</option>
-                <option value="Laravel">Laravel</option>
-                <option value="YII">YII</option>
-                <option value="Zend">Zend</option>
-                <option value="Symfony">Symfony</option>
-                <option value="Phalcon">Phalcon</option>
-                <option value="Slim">Slim</option>
+
+                <?php
+
+                if(mysqli_num_rows($result) > 0 ) {
+                    // we have data!
+                    // output the data
+                    
+                    while( $row = mysqli_fetch_assoc($result) ) {
+                        
+                        echo "<option value=" . $row['code'] . ">".$row['code'].": ".$row['description']."</option>";
+                        
+                    }
+                }
+
+                ?>
                </select>
               </div>
               <div class="form-group">
@@ -39,7 +70,8 @@
           <div class = "col-md-4 col-sm-4 col-xs-12"></div>
       </div>
   </div>
- </body>
+
+</body>
 </html>
 
 <script>
