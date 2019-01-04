@@ -15,9 +15,7 @@ include('connection.php');
 $query = "SELECT * FROM courses";
 $result = mysqli_query( $conn, $query );
 
-// close the mysql connection
-mysqli_close($conn);
-
+ //$query = "INSERT INTO like_table(does_course) VALUES('".$_SESSION['user_id']."', '".$framework."')";
 ?>
 
 <!DOCTYPE html>
@@ -60,9 +58,7 @@ mysqli_close($conn);
 
                 ?>
                </select>
-              </div>
-              <div class="form-group">
-               <input type="submit" class="btn btn-info" name="submit" value="Submit" />
+              <button type="submit" class="btn btn-success btn-block" name="submit">Submit!</button>
               </div>
              </form>
             <br />
@@ -77,7 +73,7 @@ mysqli_close($conn);
 <script>
 $(document).ready(function(){
  $('#framework').multiselect({
-  nonSelectedText: 'Select Framework',
+  nonSelectedText: 'Select course(s)',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
   buttonWidth:'400px'
@@ -104,4 +100,6 @@ $(document).ready(function(){
  
 });
 </script>
+
+
 

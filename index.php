@@ -18,7 +18,7 @@ if( isset( $_POST['login'] ) ) {
     include('connection.php');
     
     // create query
-    $query = "SELECT Name, Password FROM users WHERE Email='$formEmail'";
+    $query = "SELECT user_id, Name, Password FROM users WHERE Email='$formEmail'";
     
     // store the result
     $result = mysqli_query( $conn, $query );
@@ -32,6 +32,7 @@ if( isset( $_POST['login'] ) ) {
         while( $row = mysqli_fetch_assoc($result) ) {
             $name       = $row['Name'];
             $hashedPass = $row['Password'];
+            $user_id = $row['user_id'];
         }
 
         //echo $name;
@@ -42,7 +43,7 @@ if( isset( $_POST['login'] ) ) {
             // correct login details!
             // store data in SESSION variables
             $_SESSION['loggedInUser'] = $name;
-            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['user_id'] = $user_id;
             
             // redirect user to clients page
             header( "Location: profile.php" );
