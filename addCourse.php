@@ -58,10 +58,13 @@ $result = mysqli_query( $conn, $query );
 
                 ?>
                </select>
-              <button type="submit" class="btn btn-success btn-block" name="submit">Submit!</button>
+                <div class="form-group">
+                 <input type="submit" class="btn btn-info" name="submit" value="Submit" />
+                </div>              
               </div>
              </form>
             <br />
+            <a href="profile.php">Back to profile.</a>
           </div>
           <div class = "col-md-4 col-sm-4 col-xs-12"></div>
       </div>

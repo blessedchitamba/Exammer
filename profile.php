@@ -55,7 +55,7 @@ if( isset( $alertMessage ) ) {
         
         while( $row = mysqli_fetch_assoc($result) ) {
             
-            echo "<p>" . $row['code'] . '<a href="remove.php?id=' . $row['user_id'] . '" type="button" class="btn btn-primary btn-sm">
+            echo "<p><a href='course.php' id='course'>" . $row['code'] . '</a><a href="remove.php?id=' . $row['user_id'] . '" type="button" class="btn btn-primary btn-sm">
                     <span class="glyphicon glyphicon-delete"></span></a></p>';
             
         }
@@ -64,6 +64,12 @@ if( isset( $alertMessage ) ) {
     ?>
 
     <div class="text-center"><a href="addCourse.php" type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add Course</a></div>
+
+    <script type="text/javascript">
+         $('#course').click(function(){
+                document.cookie = "cookieName="+$(this).text();
+        });
+    </script>
 
 <?php
 include('footer.php');
